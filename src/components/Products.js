@@ -4,42 +4,39 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { fetchData } from '../redux'
+import { connect } from 'react-redux'
 
-const Products = () => {
-    const [loading, setLoading] = useState(false)
+const Products = ({ fetchProducts, products }) => {
+    let { loading, data } = products
 
     const [currentProduct, setCurrentProduct] = useState('all')
-
-    const [data, setData] = useState([])
     const [filter, setFilter] = useState(data)
-
+    const [componentDidMount, setComponentDidMount] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true)
-            const response = await fetch('https://fakestoreapi.com/products')
-            setData(await response.clone().json())
-            setFilter(await response.json())
-            setLoading(false)
-        }
-
-        fetchData();
+        fetchProducts();
+        setComponentDidMount(true)
         // eslint-disable-next-line
     }, [])
 
-    console.log(data)
+    if(componentDidMount && data.length!==0){
+        setComponentDidMount(false)
+        setFilter(data)
+    }
 
+    // console.log(filter)
     const Loading = () => {
         return <>
-                <div className="col-md-3">
-                    <Skeleton height={350} width={270} borderRadius={10} count={1}/>
-                </div>
-                <div className="col-md-3">
-                    <Skeleton height={350} width={270} borderRadius={10} count={1} />
-                </div>
-                <div className="col-md-3">
-                    <Skeleton height={350} width={270} borderRadius={10} count={1}/>
-                </div>
+            <div className="col-md-3">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-3">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-3">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
         </>
     }
 
@@ -53,19 +50,18 @@ const Products = () => {
                 <Link to={`/products/${item.id}`} className="btn btn-outline-primary">Buy Now</Link>
             </div>
         })
-
     }
 
     const filterProduct = (products) => {
         setCurrentProduct(products)
         if (products !== "all") {
-            setLoading(true)
+            // setLoading(true)
             setFilter(data.filter(item => item.category === products))
-            setLoading(false)
+            // setLoading(false)
         } else {
-            setLoading(true)
+            // setLoading(true)
             setFilter(data);
-            setLoading(false)
+            // setLoading(false)
         }
     }
 
@@ -93,4 +89,17 @@ const Products = () => {
     )
 }
 
-export default Products
+
+const mapStateToProps = state => {
+    return {
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchProducts: () => dispatch(fetchData())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products)

@@ -1,2 +1,6 @@
 export * from './cart/cartAction'
 export * from './cart/cartReducer'
+export * from './products/productsAction'
+export * from './products/productsReducer'
+export * from './product/productAction'
+export * from './product/productReducer'
