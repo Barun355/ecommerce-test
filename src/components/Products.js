@@ -28,13 +28,31 @@ const Products = ({ fetchProducts, products }) => {
     // console.log(filter)
     const Loading = () => {
         return <>
-            <div className="col-md-3">
+            <div className="col-md-4">
                 <Skeleton height={350} width={270} borderRadius={10} count={1} />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
                 <Skeleton height={350} width={270} borderRadius={10} count={1} />
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
+                <Skeleton height={350} width={270} borderRadius={10} count={1} />
+            </div>
+            <div className="col-md-4">
                 <Skeleton height={350} width={270} borderRadius={10} count={1} />
             </div>
         </>
@@ -42,7 +60,7 @@ const Products = ({ fetchProducts, products }) => {
 
     const ShowProduct = () => {
         return filter && filter.map(item => {
-            return <div className="card m-1 p-2 col-md-3" key={item.id} style={{ height: '25rem' }}>
+            return <div className="card m-1 p-2 col-md-3" key={item.id} >
                 {loading ? <Skeleton height={100} width={100} /> : <img className="" src={item.image} alt={item.image} style={{ height: '12rem' }} />}
                 <h5 className="card-title">{item.title.substring(0, 12)}...</h5>
                 <p className="text-start">{item.description.substring(0, 50)}...</p>
@@ -55,13 +73,9 @@ const Products = ({ fetchProducts, products }) => {
     const filterProduct = (products) => {
         setCurrentProduct(products)
         if (products !== "all") {
-            // setLoading(true)
             setFilter(data.filter(item => item.category === products))
-            // setLoading(false)
         } else {
-            // setLoading(true)
             setFilter(data);
-            // setLoading(false)
         }
     }
 
