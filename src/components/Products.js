@@ -82,7 +82,7 @@ const Products = ({ fetchProducts, products }) => {
     return (
         <>
             <div className="container-fluid p-5 d-flex flex-column gap-3">
-                <div className="items text-center d-flex gap-3 justify-content-center">
+                <div className="items text-center d-flex gap-3 justify-content-center container" style={{overflowX: 'auto'}}>
                     <button className="btn btn-outline-primary" onClick={() => filterProduct('all')}>All</button>
                     <button className="btn btn-outline-primary" onClick={() => filterProduct('men\'s clothing')}>Men's Clothing</button>
                     <button className="btn btn-outline-primary" onClick={() => filterProduct('women\'s clothing')}>Women's Clothing</button>

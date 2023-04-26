@@ -7,10 +7,10 @@ const Navbar = (props) => {
         <nav className="navbar navbar-expand-lg bg-light shadow-sm bg-white">
             <div className="container-fluid">
                 <Link className="navbar-brand lead fs-2 fw-bold text-primary" to="/">iMart</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className=" container d-md-flex md-flex-column p-2" id="navbarSupportedContent">
+                <div className=" container d-md-flex md-flex-column p-2 collapse" id="navbarSupportedContent">
                     <div className="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
                         <ul className="navbar-nav mb-2 mb-lg-0">
                             <li className="nav-item">
